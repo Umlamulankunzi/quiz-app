@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'users',
     'quizzes',
 ]
 
@@ -69,6 +70,10 @@ TEMPLATES = [
         },
     },
 ]
+
+# Customising the default user model
+AUTH_USER_MODEL = 'users.CustomUser'
+
 
 WSGI_APPLICATION = 'quiz_app.wsgi.application'
 
