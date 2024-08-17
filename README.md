@@ -2,29 +2,29 @@
 
 ## Overview
 
-The **Quiz App** is an interactive web application where users can answer multiple-choice questions. The application features scoring, time limits, and feedback. It’s built using Flask for the backend and CSS for the frontend, with SQLite used for development and MySQL for deployment.
+The **Quiz App** is an interactive web application where users can answer multiple-choice questions. The application features scoring, time limits, and feedback. It’s now built using Django for the backend and CSS for the frontend, with SQLite used for development and MySQL for deployment.
 
 ## Tech Stack
 
-- **Backend:** Flask (Python)
+- **Backend:** Django (Python)
 - **Frontend:** HTML, CSS
 - **Database:** SQLite (development), MySQL (deployment)
-- **Authentication:** JWT (JSON Web Tokens)
+- **Authentication:** Django's built-in authentication system
 
 ## Features
 
-- User authentication with JWT
+- User authentication with Django's built-in authentication system
 - Scoring and feedback on quiz answers
 - Time limits for each quiz
 - Responsive design for various devices
-- API endpoints to manage quiz questions and results
+- API endpoints to manage quiz questions and results (bonus feature)
 
 ## Setup Instructions
 
 ### Prerequisites
 
 - Python 3.x
-- Flask
+- Django
 - SQLite (for development)
 - MySQL (for deployment)
 
@@ -66,19 +66,25 @@ The **Quiz App** is an interactive web application where users can answer multip
 5. **Set up the database:**
 
    - For development with SQLite, the database will be initialized automatically.
-   - For deployment with MySQL, configure the `config.py` with MySQL connection details.
+   - For deployment with MySQL, configure the `settings.py` with MySQL connection details.
 
-6. **Run the application:**
+6. **Apply migrations:**
 
    ```bash
-   python app.py
+   python manage.py migrate
+   ```
+
+7. **Run the application:**
+
+   ```bash
+   python manage.py runserver
    ```
 
 ## Usage
 
 1. **Authentication:**
 
-   - Users can register and log in using JWT for secure session management.
+   - Users can register and log in using Django's built-in authentication system.
 
 2. **Taking a Quiz:**
 
@@ -86,9 +92,9 @@ The **Quiz App** is an interactive web application where users can answer multip
 
 3. **Managing Quiz Questions:**
 
-   - Admins can add, update, and delete quiz questions through the REST API.
+   - Admins can add, update, and delete quiz questions through the Django admin panel or REST API (if implemented).
 
-## API Endpoints
+## API Endpoints (Bonus Feature)
 
 - **GET /api/quizzes**: Retrieve a list of available quizzes.
 - **GET /api/quizzes/{id}**: Retrieve a specific quiz by ID.
@@ -100,19 +106,19 @@ The **Quiz App** is an interactive web application where users can answer multip
 
 ## Testing
 
-Still under development. 
+Still under development.
 
 ## Deployment
 
 1. **Configure MySQL:**
 
-   - Update the `config.py` file with MySQL connection details.
+   - Update the `settings.py` file with MySQL connection details.
 
-   Still under development. will be updated with specific details.
+   Still under development. Will be updated with specific details.
 
 2. **Deploy the application:**
 
-   - Deploy on platforms like Heroku, AWS, or any server supporting Flask applications.
+   - Deploy on platforms like Heroku, AWS, or any server supporting Django applications.
 
 ## Contributing
 
