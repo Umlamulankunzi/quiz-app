@@ -1,0 +1,6 @@
+<h1>Delete Quiz</h1>
+<p>Are you sure you want to delete "{{ quiz.title }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+</form>

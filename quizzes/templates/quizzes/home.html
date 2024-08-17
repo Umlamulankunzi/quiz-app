@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Available Quizzes</h1>
+    <ul>
+        {% for quiz in quizzes %}
+        <li>
+            <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a> - {{ quiz.category.name }}
+        </li>
+        {% empty %}
+        <li>No quizzes available at the moment.</li>
+        {% endfor %}
+    </ul>
+</div>

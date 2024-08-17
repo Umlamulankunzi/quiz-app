@@ -40,4 +40,4 @@ class QuizAdmin(admin.ModelAdmin):
 
 @admin.register(UserResult)
 class UserResultAdmin(admin.ModelAdmin):
-    list_display = ('user', 'quiz', 'score', 'completion_time')
+    list_display = ('user', 'quiz', 'score')

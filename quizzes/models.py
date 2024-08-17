@@ -72,7 +72,7 @@ class UserResult(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     score = models.IntegerField()
-    completion_time = models.DurationField()
+    # completion_time = models.DurationField()
 
     def __str__(self):
         return f"{self.user.username} - " \
