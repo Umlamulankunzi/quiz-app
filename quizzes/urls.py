@@ -1,11 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
     path('', views.quiz_list, name='quiz_list'),
-    path('accounts/', include('django.contrib.auth.urls')),  # Django's auth system
-    path('accounts/', include('users.urls')),
     path('quiz/<int:quiz_id>/', views.quiz_detail, name='quiz_detail'),
     path('quiz/create/', views.create_quiz, name='create_quiz'),
     path('quiz/<int:quiz_id>/update/', views.update_quiz, name='update_quiz'),

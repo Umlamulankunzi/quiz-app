@@ -7,6 +7,7 @@
     <title>Quiz Wiz</title>
     <!-- Link to the custom CSS file -->
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
     {% block stylesheetlink %}
 
@@ -15,17 +16,48 @@
 
 </head>
 <body>
-<nav>
-    <ul>
-        <!-- Other navigation links -->
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'user_dashboard' %}">User Dashboard</a></li>
-            {% if user.is_quiz_master %}
-                <li><a href="{% url 'quiz_master_dashboard' %}">Quiz Master Dashboard</a></li>
-            {% endif %}
-        {% endif %}
-    </ul>
-</nav>
+
+<div class="nav">
+  <input type="checkbox" id="nav-check">
+  <div class="nav-header">
+    <div class="nav-title">
+      <a class="nav-logo" href="{% url 'quiz_list' %}" >Quiz Wiz</a>
+    </div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+    <span></span>
+    <span></span>
+    <span></span>
+    </label>
+  </div>
+
+  <div class="nav-links">
+    <a href="{% url 'quiz_list' %}">Quizzes</a>
+    <a href="#">About Us</a>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'user_dashboard' %}">User Dashboard</a>
+
+      {% if user.is_quiz_master %}
+        <a href="{% url 'quiz_master_dashboard' %}">Quiz Master Dashboard</a>
+
+      {% endif %}
+      <a href="{% url 'logout' %}">Logout</a>
+
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+{% block logincontent %}
+
+{% endblock logincontent %}
+
 <div id="global_container">
   {% block content %}
   {% endblock %}

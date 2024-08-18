@@ -8,10 +8,9 @@ body, h1, h2, h3, p, ul, li, table {
 
 /* Base body styling */
 body {
-    background-color: #f4f4f4;
+    background-color: #c9c9c9;
     color: #333;
     line-height: 1.6;
-    padding: 20px;
 }
 
 /* Navigation bar */
@@ -40,12 +39,20 @@ nav ul li a:hover {
 
 /* General container styling */
 .container {
-    max-width: 800px;
+
     margin: 0 auto;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#global_container {
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 0 2%;
 }
 
 /* Table styling */

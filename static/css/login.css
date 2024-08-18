@@ -3,11 +3,13 @@
 
 .form-container {
     background: #FFFFFF;
-    margin: 0 auto;
-    width: 35vw;
-    padding: 2% 2%;
+    margin: 2vh auto;
+    width: 30%;
+    padding: 1%;
     text-align: center;
     border-radius: 3vh;
+    border: 1px solid #ddd;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Create shadow */
 }
 
 .message {
@@ -21,7 +23,7 @@
   }
 
   body {
-      background-color: #c9c9c9;
+    background-color: #c9c9c9;
 }
 
 
@@ -30,7 +32,7 @@
     color: #05e911;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-
+    font-size: 2.5rem;
 }
 
 .login-form-title {
@@ -80,13 +82,16 @@ button {
 @media (max-width: 400px) {
     .form-container {
         width: 95% ;
-        padding: 2% 1%;
         border-radius: 2vh;
     }
 
     .login-form-title {
         padding-bottom: 5vh;
-        font-size: medium;
+        font-size: 1.5rem;
+    }
+
+    .form-logo {
+        font-size: 1.9rem;
     }
 }
 
@@ -94,7 +99,6 @@ button {
 @media (min-width: 401px) and (max-width: 576px) {
     .form-container {
         width: 80% ;
-        padding: 2% 1%;
     }
 
     .login-form-title {
@@ -106,7 +110,6 @@ button {
 @media (min-width: 576px) and (max-width: 767px) {
     .form-container {
         width: 55% ;
-        padding: 2% 1%;
     }
 
     .login-form-title {
@@ -117,6 +120,5 @@ button {
 @media (min-width: 768px) and (max-width: 1024px) {
     .form-container {
         width: 40% ;
-        padding: 3% 2%;
     }
 }
