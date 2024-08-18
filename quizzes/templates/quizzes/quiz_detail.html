@@ -1,8 +1,9 @@
-<h1>{{ quiz.title }}</h1>
-<p>{{ quiz.description }}</p>
 {% extends "base.html" %}
 
 {% block content %}
+
+<h1>{{ quiz.title }}</h1>
+<p>{{ quiz.description }}</p>
 
 <form method="post" action="{% url 'submit_quiz' quiz.id %}">
     {% csrf_token %}
