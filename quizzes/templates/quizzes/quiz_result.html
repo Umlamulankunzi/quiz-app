@@ -1,2 +1,12 @@
+<!-- This page needs to be updated, there should be a link which lets users -->
+<!-- see how they did in each question, showing maybe in red the ones they  -->
+<!-- got wrong.... design it, and see the view which uses this template -->
+<!-- and use the UserResult model -->
+{% extends "base.html" %}
+
+{% block content %}
+
 <h1>Quiz Result</h1>
 <p>You scored {{ result.score }} out of {{ result.quiz.questions.count }}</p>
+
+{% endblock content %}

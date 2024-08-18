@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <h1>{{ quiz.title }}</h1>
 <p id="timer" data-time-limit="{{ quiz.time_limit }}">Loading timer...</p>
 <form method="post">
@@ -17,3 +21,5 @@
 </form>
 
 <script src="{% static 'js/quiz_timer.js' %}"></script>
+
+{% endblock content %}

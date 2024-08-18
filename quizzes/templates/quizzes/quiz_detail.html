@@ -1,5 +1,9 @@
 <h1>{{ quiz.title }}</h1>
 <p>{{ quiz.description }}</p>
+{% extends "base.html" %}
+
+{% block content %}
+
 <form method="post" action="{% url 'submit_quiz' quiz.id %}">
     {% csrf_token %}
     {% for question in questions %}
@@ -15,3 +19,5 @@
     <input type="hidden" name="completion_time" id="completion_time">
     <button type="submit">Submit</button>
 </form>
+
+{% endblock content %}
