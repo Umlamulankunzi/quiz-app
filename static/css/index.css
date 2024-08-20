@@ -96,6 +96,15 @@ button:hover {
     margin-bottom: 20px;
 }
 
+.indent {
+    padding-left: 2rem;
+    display: block;
+}
+
+.question-container {
+    margin-bottom: 2px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     nav ul li {

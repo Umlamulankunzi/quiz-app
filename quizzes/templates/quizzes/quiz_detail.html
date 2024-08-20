@@ -8,12 +8,21 @@
 <form method="post" action="{% url 'submit_quiz' quiz.id %}">
     {% csrf_token %}
     {% for question in questions %}
-    <div>
-        <p>{{ question.text }}</p>
+    <div class="mb-3">
+        <p class="mb-0"><b>{{ forloop.counter }}</b>. {{ question.text }}</p>
+
         {% for choice, text in question.choices.items %}
-        <label>
-            <input type="radio" name="{{ question.id }}" value="{{ choice }}">{{ choice }} - {{ text }}
-        </label><br>
+
+        <div class="form-check ms-3">
+            <input
+                class="form-check-input border-success" type="radio"
+                name="{{ question.id }}"
+                value="{{ choice }}">
+            <label class="form-check-label">
+              {{ choice }} - {{ text }}
+            </label>
+          </div>
+
         {% endfor %}
     </div>
     {% endfor %}
