@@ -1,41 +1,12 @@
 /* Reset some basic elements for consistency */
-body, h1, h2, h3, p, ul, li, table {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-}
 
 /* Base body styling */
 body {
     background-color: #c9c9c9;
-    color: #333;
-    line-height: 1.6;
 }
 
 /* Navigation bar */
-nav ul {
-    list-style: none;
-    padding: 0;
-}
 
-nav ul li {
-    display: inline-block;
-    margin-right: 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    padding: 5px 10px;
-    border-radius: 3px;
-    transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: #007BFF;
-    color: #fff;
-}
 
 /* General container styling */
 .container {
@@ -94,30 +65,4 @@ button:hover {
 #timer {
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-.indent {
-    padding-left: 2rem;
-    display: block;
-}
-
-.question-container {
-    margin-bottom: 2px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    table, th, td {
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
-        padding: 15px;
-    }
 }

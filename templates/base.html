@@ -1,82 +1,96 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
     <title>Quiz Wiz</title>
-    <!-- Link to the custom CSS file -->
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" href="{% static 'images/quiz.png' %}">
 
-    {% block stylesheetlink %}
-
-    {% endblock stylesheetlink %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
 
 
-</head>
-<body>
+    <!-- Favicons -->
+    <link href="{% static 'images/quiz.png' %}" rel="icon">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg bg-success">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="{% static 'images/quiz.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        Quiz Wiz
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'quiz_list' %}">Quizzes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact us</a>
-          </li>
-          {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Username
-              </a>
-              <ul class="dropdown-menu dropdown-menu-start">
-                <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">User Dashboard</a></li>
 
-                {% if user.is_quiz_master %}
-                  <li><a class="dropdown-item" href="{% url 'quiz_master_dashboard' %}">Quiz Dashboard</a></li>
-                {% endif %}
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+
+    <link href="{% static 'css/main.css' %} " rel="stylesheet">
+
+
+    {% block custom_styling %}
+
+    {% endblock custom_styling %}
+
+
+  </head>
+  <body>
+
+<main class="color">
+    <!-- NAVBAR -->
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img src="{% static 'images/quiz.png' %}" width="40" height="32">
+            <h3 class="logo">Quiz Wiz</h3>
+          </a>
+
+
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'quiz_list' %}" class="nav-link px-2 link-light">Quizzes</a></li>
+            <li><a href="{% url 'home' %}#about" class="nav-link px-2 link-light">About</a></li>
+            <li><a href="#" class="nav-link px-2 link-light">For Developers</a></li>
+            <li><a href="#" class="nav-link px-2 link-light">Contact Us</a></li>
+          </ul>
+
+          <div class="col-md-3 text-end">
+            {% if user.is_authenticated %}
+              <li class="nav-item btn-group dropdown">
+                <a class="link-light btn btn-primary dropdown-toggle" type="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Username
+                </a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">User Dashboard</a></li>
+
+                  {% if user.is_quiz_master %}
+                    <li><a class="dropdown-item" href="{% url 'quiz_master_dashboard' %}">Quiz Dashboard</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </li>
+
+
+            {% else %}
+              <ul class="nav">
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="text-white btn btn-outline-primary me-2">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'register' %}" class="btn btn-primary">Sign-up</a>
+                </li>
               </ul>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
+            {% endif %}
 
-<!-- NAVBAR END -->
+          </div>
+        </header>
+        {% block logincontent %}
+        <!-- refactor this -->
 
-
-
-
-{% block logincontent %}
-
-{% endblock logincontent %}
-
+        {% endblock logincontent %}
 <div id="global_container">
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+
+    {% endblock content %}
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+
+    <footer class="pt-3 mt-4 text-white text-center border-top">
+      Quiz Wiz &copy; 2024
+    </footer>
+  </div>
+</main>
+
+
+
+  </body>
 </html>

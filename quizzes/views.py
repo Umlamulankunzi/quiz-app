@@ -5,6 +5,9 @@ from .models import Quiz, Question, UserResult
 from .forms import QuizForm, QuestionForm
 
 
+def index(request):
+    return render(request, 'home.html')
+
 def home(request):
     quizzes = Quiz.objects.filter(approved=True)
     return render(request, 'quizzes/home.html', {'quizzes': quizzes})

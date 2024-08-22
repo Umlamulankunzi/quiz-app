@@ -1,0 +1,18 @@
+#hero-container {
+  background-image: url("../images/hero-bg.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.color {
+  background-color: #0a0e47;
+}
+
+.logo {
+  color: #3ce653;
+  align-self: center;
+  padding-left: 2vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+}
