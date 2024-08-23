@@ -52,7 +52,7 @@ class Question(models.Model):
     quiz = models.ForeignKey(
         Quiz, related_name='questions', on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
-    correct_answer = models.CharField(max_length=255)
+    correct_answer = models.TextField()
     choices = models.JSONField()
 
     def __str__(self):
