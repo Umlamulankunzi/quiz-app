@@ -17,16 +17,16 @@ Welcome to **Quiz Wiz**, an interactive quiz application where users can test th
 
 ## Project Description
 
-Quiz Wiz is an online platform designed for both users and developers. Users can explore and take quizzes on a variety of subjects, track their progress, and compete on leaderboards. Developers can utilize our comprehensive API to integrate quizzes into their own applications. The platform features user roles such as Admins, Quiz Masters, and Developers, each with specific permissions.
+Quiz Wiz is an online platform designed for both users and developers. Users can explore and take quizzes on a variety of subjects. Developers can utilize our comprehensive API to integrate quizzes into their own applications.
 
 ## Features
 
-- **User Registration & Authentication**: Secure registration and login system with customizable user roles.
+- **User Registration & Authentication**: Secure registration and login system, using django default auth.
 - **Interactive Quizzes**: Users can take timed quizzes with immediate feedback upon completion.
-- **Quiz Management**: Admins and Quiz Masters can create, update, and delete quizzes.
-- **Leaderboard**: Track top performers across different quizzes.
+- **Quiz Management**: users can upload their questions.
+- **Leaderboard**: still under development.
 - **API for Developers**: Access to our quiz repository through a RESTful API.
-- **Dashboard**: Personalized dashboards for users and quiz masters to track their activities.
+- **Dashboard**: still under development.
 - **Mobile-Friendly**: Fully responsive design optimized for mobile devices.
 
 ## Technologies Used
@@ -46,12 +46,13 @@ Quiz Wiz is an online platform designed for both users and developers. Users can
 - Django 3.x
 - Bootstarp 5.x
 - MySQL (for production)
+- Django Rest framework
 
 ### Steps
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/umlamulankunzi/quiz-app.gi
+   git clone https://github.com/umlamulankunzi/quiz-app.git
    cd quiz-app
    ```
 
@@ -118,17 +119,13 @@ Developers can interact with Quiz Wiz's API to access quiz data, create new quiz
 
 ### Available Endpoints
 
-- **List Quizzes**: `GET /api/quizzes/`
-- **Quiz Detail**: `GET /api/quizzes/<id>/`
-- **Create Quiz**: `POST /api/quizzes/`
-- **Update Quiz**: `PATCH /api/quizzes/<id>/`
-- **Delete Quiz**: `DELETE /api/quizzes/<id>/`
+- **Api root**: `GET /api/v1/`
+- **list categories**: `GET /api/v1/categories/`
+- **list one category**: `GET /api/v1/categories/category<id>`
+- **list category questions**: `GET /api/v1/category/questions/category/<id>/`
 
 Refer to the [API documentation](#) for detailed information.
 
-## Custom Authentication
-
-The API access is restricted to users with the `is_developer` or `is_admin` roles. A custom permission class, `IsDeveloperOrAdmin`, is implemented to ensure secure access to API endpoints.
 
 ## Deployment
 
@@ -159,139 +156,7 @@ For deployment,I plan to deploy on platforms like Railway or PythonAnywhere, I p
 
 ## License
 
-Quiz Wiz is released under the Apache License. See the [LICENSE](LICENSE) file for details..
+Quiz Wiz is released under the Apache  2 License. See the [LICENSE](LICENSE) file for details..
 
 
 ------------------------------------------------------------------------------------------------
-
-# Quiz App
-
-## Overview
-
-The **Quiz App** is an interactive web application where users can answer multiple-choice questions. The application features scoring, time limits, and feedback. It’s now built using Django for the backend and CSS for the frontend, with SQLite used for development and MySQL for deployment.
-
-## Tech Stack
-
-- **Backend:** Django (Python)
-- **Frontend:** HTML, CSS
-- **Database:** SQLite (development), MySQL (deployment)
-- **Authentication:** Django's built-in authentication system
-
-## Features
-
-- User authentication with Django's built-in authentication system
-- Scoring and feedback on quiz answers
-- Time limits for each quiz
-- Responsive design for various devices
-- API endpoints to manage quiz questions and results (bonus feature)
-
-## Setup Instructions
-
-### Prerequisites
-
-- Python 3.x
-- Django
-- SQLite (for development)
-- MySQL (for deployment)
-
-### Installation
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/umlamulankunzi/quiz-app.git
-   cd quiz-app
-   ```
-
-2. **Create a virtual environment:**
-
-   ```bash
-   python -m venv venv
-   ```
-
-3. **Activate the virtual environment:**
-
-   - On Windows:
-
-     ```bash
-     venv\Scripts\activate
-     ```
-
-   - On macOS/Linux:
-
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. **Install dependencies:**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Set up the database:**
-
-   - For development with SQLite, the database will be initialized automatically.
-   - For deployment with MySQL, configure the `settings.py` with MySQL connection details.
-
-6. **Apply migrations:**
-
-   ```bash
-   python manage.py migrate
-   ```
-
-7. **Run the application:**
-
-   ```bash
-   python manage.py runserver
-   ```
-
-## Usage
-
-1. **Authentication:**
-
-   - Users can register and log in using Django's built-in authentication system.
-
-2. **Taking a Quiz:**
-
-   - After logging in, users can access quizzes, answer questions, and receive feedback.
-
-3. **Managing Quiz Questions:**
-
-   - Admins can add, update, and delete quiz questions through the Django admin panel or REST API (if implemented).
-
-## API Endpoints (Bonus Feature)
-
-- **GET /api/quizzes**: Retrieve a list of available quizzes.
-- **GET /api/quizzes/{id}**: Retrieve a specific quiz by ID.
-- **POST /api/quizzes**: Add a new quiz (admin only).
-- **PUT /api/quizzes/{id}**: Update an existing quiz (admin only).
-- **DELETE /api/quizzes/{id}**: Delete a quiz (admin only).
-- **POST /api/answers**: Submit answers for a quiz.
-- **GET /api/users/{id}/results**: Retrieve quiz results for a user.
-
-## Testing
-
-Still under development.
-
-## Deployment
-
-1. **Configure MySQL:**
-
-   - Update the `settings.py` file with MySQL connection details.
-
-   Still under development. Will be updated with specific details.
-
-2. **Deploy the application:**
-
-   - Deploy on platforms like Heroku, AWS, or any server supporting Django applications.
-
-## Contributing
-
-1. **Fork the repository** and create a new branch for your changes.
-2. **Make your changes** and test thoroughly.
-3. **Submit a pull request** with a clear description of your changes.
-
-## License
-
-This project is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
