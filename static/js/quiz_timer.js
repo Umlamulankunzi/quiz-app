@@ -1,27 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the timer element and the form element
+    // Getting the timer element and the form element
     const timerElement = document.getElementById('timer');
     const formElement = document.querySelector('form');
 
     if (timerElement && formElement) {
-        // Get the time limit from a hidden input field or data attribute
-        const timeLimit = parseInt(timerElement.dataset.timeLimit, 10) || 60;
+        // Getting time limit from a data attribute of p tag in template
+        const timeLimit = parseInt(timerElement.dataset.timeLimit);
         let timeRemaining = timeLimit;
 
-        // Update the timer display
-        function updateTimer() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            timeRemaining--;
+        // If there's no time limit, show "No Timer"
+        if (timeLimit == 0) {
+            timerElement.textContent = 'No Timer';
+        } else {
+            // Update the timer display
+            function updateTimer() {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timeRemaining--;
 
-            if (timeRemaining < 0) {
-                // Time is up, submit the form
-                formElement.submit();
+                if (timeRemaining < 0) {
+                    // Time is up, submitting the form
+                    formElement.submit();
+                }
             }
-        }
 
-        // Update the timer every second
-        setInterval(updateTimer, 1000);
+            // Update the timer every second
+            setInterval(updateTimer, 1000);
+        }
     }
 });

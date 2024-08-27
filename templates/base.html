@@ -18,21 +18,25 @@
 
     <link href="{% static 'css/main.css' %} " rel="stylesheet" />
 
-    {% block custom_styling %} {% endblock custom_styling %}
+    {% block custom_styling %}
+
+    {% endblock custom_styling %}
   </head>
   <body class="color">
     <main class="color">
       <!-- NEW NAVBAR -->
-      <nav class="navbar navbar-expand-lg px-lg-5">
-        <div class="container-fluid">
+      <nav class="navbar navbar-dark navbar-expand-lg px-lg-5 mb-2 border-bottom border-light">
+        <div class="container-fluid d-flex align-items-baseline">
+          <a class="navbar-brand d-flex align-items-center " href="{% url 'home' %}">
           <img
             src="{% static 'images/quiz.png' %}"
             alt="Logo"
             width="30"
             height="24"
-            class="d-inline-block align-text-top"
+            class=""
           />
-          <a class="navbar-brand" href="{% url 'home' %}">Quiz Wiz</a>
+          <span class="logo">Quiz Wiz</span>
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -46,24 +50,8 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="{% url 'quiz_list' %}"
-                  >Quizzes</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">For Developers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
 
               <li class="nav-item dropdown">
                 <a
@@ -73,116 +61,62 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                Quizzes
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
+                  <li><a class="dropdown-item" href="{% url 'select_quiz' %}">Take Quiz</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category_list' %}">Categories</a></li>
                 </ul>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'api_info' %}">API</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+              </li>
             </ul>
-            <div class="d-flex">
+            <div class="d-flex me-5 pe-5">
+              {% if user.is_authenticated %}
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                  {{ user.username }}
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">User Dashboard</a></li>
+                    {% if user.is_superuser %}
+                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
+                    {% endif %}
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              {% else %}
               <a href="{% url 'login' %}" class="btn text-white btn-outline-primary me-3">Login</a>
               <a href="{% url 'register' %}" class="btn btn-primary">Sign-up</a>
             </div>
+            {% endif %}
           </div>
         </div>
       </nav>
       <!-- /NEW NAVBAR -->
-      <!-- NAVBAR -->
       <div class="container">
-        <header
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
-        >
-          <a
-            href="{% url 'home' %}"
-            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
-          >
-            <img src="{% static 'images/quiz.png' %}" width="40" height="32" />
-            <h3 class="logo">Quiz Wiz</h3>
-          </a>
-
-          <ul
-            class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
-          >
-            <li>
-              <a href="{% url 'quiz_list' %}" class="nav-link px-2 link-light"
-                >Quizzes</a
-              >
-            </li>
-            <li>
-              <a href="{% url 'home' %}#about" class="nav-link px-2 link-light"
-                >About</a
-              >
-            </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-light">For Developers</a>
-            </li>
-            <li><a href="#" class="nav-link px-2 link-light">Contact Us</a></li>
-          </ul>
-
-          <div class="col-md-3 text-end">
-            {% if user.is_authenticated %}
-            <li class="nav-item btn-group dropdown">
-              <a
-                class="link-light btn btn-primary dropdown-toggle"
-                type="button"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Username
-              </a>
-              <ul class="dropdown-menu dropdown-menu-start">
-                <li>
-                  <a class="dropdown-item" href="{% url 'user_dashboard' %}"
-                    >User Dashboard</a
-                  >
-                </li>
-
-                {% if user.is_quiz_master %}
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="{% url 'quiz_master_dashboard' %}"
-                    >Quiz Dashboard</a
-                  >
-                </li>
-                {% endif %}
-                <li>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                </li>
-              </ul>
-            </li>
-
-            {% else %}
-            <ul class="nav">
-              <li class="nav-item">
-                <a
-                  href="{% url 'login' %}"
-                  class="text-white btn btn-outline-primary me-2"
-                  >Login</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'register' %}" class="btn btn-primary"
-                  >Sign-up</a
-                >
-              </li>
-            </ul>
-            {% endif %}
-          </div>
-        </header>
-        {% block logincontent %}
-        <!-- refactor this -->
-
-        {% endblock logincontent %}
         <div id="global_container">
-          {% block content %} {% endblock content %}
+          {% block content %}
+          {% endblock content %}
         </div>
 
         <footer class="pt-3 mt-4 text-white text-center border-top">
@@ -190,5 +124,6 @@
         </footer>
       </div>
     </main>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>

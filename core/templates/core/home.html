@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="container py-4">
+  <div id="hero-container" class="p-5 mb-4 bg-light rounded-3">
+    <div class="text-white container-fluid py-5 dosis-font-400">
+      <h1 class="display-5 fw-bold">Welcome to Quiz Wiz</h1>
+      <p class="col-lg-6 col-md-8 fs-4">
+        Challenge your mind and master new topics with our engaging quizzes.
+        Start your journey to becoming a quiz champion today!
+      </p>
+      <button class="btn btn-success btn-lg" type="button">Take a Quiz</button>
+    </div>
+  </div>
+  <!-- /HERO SECTION -->
+
+  <div class="row align-items-md-stretch">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+      <div class="card h-100 text-bg-dark">
+        <div class="card-header">
+          Featured
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Create an Account</h5>
+          <p class="card-text">Sign-up today and enjoy many features like the ability to take quizzes
+            Check your perfomance and quiz statistics.</p>
+          <a href="{% url 'register' %}" class="btn btn-primary">Create Account</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-header">
+          Featured
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">API for Developers</h5>
+          <p class="card-text">Unlock the power of our extensive quiz repository with our
+            developer-friendly API. Creating a Developer Account and gain full
+            access to our diverse collection of quizzes. Explore, integrate, and
+            build innovative applications with ease. Access the <a href="#">API documentation.</a></p>
+          <a href="{% url 'api_info' %}" class="btn btn-primary">API Info</a>
+        </div>
+      </div>
+    </div>
+
+<!--  -->
+      <!-- <div class="h-75 p-5 text-white bg-dark rounded-3"> -->
+        <!-- <h2>Create an Account</h2> -->
+        <!-- <p> -->
+          <!-- Sign-up today and enjoy many features like the ability to take quizzes -->
+          <!-- Check your perfomance and quiz statistics. -->
+        <!-- </p> -->
+        <!-- <a href="{% url 'register' %}" class="btn btn-primary mt-4" type="button" -->
+          <!-- >Create Account</a -->
+        <!-- > -->
+      <!-- </div> -->
+<!--  -->
+
+    <!-- </div> -->
+    <!-- <div class="col-md-6"> -->
+      <!-- <div class="h-75 p-5 bg-light border rounded-3 text-black"> -->
+        <!-- <h2>API for Developers</h2> -->
+        <!-- <p> -->
+          <!-- Unlock the power of our extensive quiz repository with our -->
+          <!-- developer-friendly API. Creating a Developer Account and gain full -->
+          <!-- access to our diverse collection of quizzes. Explore, integrate, and -->
+          <!-- build innovative applications with ease. Access the <a href="#">API documentation.</a> -->
+        <!-- </p> -->
+        <!-- <a href="{% url 'api_info' %}" class="btn btn-primary">Read More</a> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  </div>
+  </div>
+
+  {% endblock content %}
+</div>

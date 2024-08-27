@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container my-5 w-75 mx-auto">
+  <h1 class="text-center mb-4">Quiz Wiz API Info</h1>
+
+  <section id="overview" class="mb-5">
+    <p class="lead text-center">
+      Welcome to the <strong>Quiz Wiz API</strong>! Our API allows developers to
+      integrate Quiz Wiz quizzes into their own applications, offering a wide
+      range of quiz topics and interactive features. Whether you're building an
+      educational tool, a trivia app, or any other project that could benefit
+      from quizzes, our API provides a simple and powerful way to access and
+      manage quiz data.
+    </p>
+  </section>
+
+  <section id="getting-started" class="mb-5">
+    <h2>Getting Started</h2>
+    <ol>
+      <li class="mb-3">
+        <h5>Register for an Account</h5>
+        <p>
+          To access the API, you need to register an account on Quiz Wiz.
+          Here's how:
+        </p>
+        <ul>
+          <li><a class="link-orange" href="{% url 'register' %}">Sign Up</a>: Create an account on Quiz Wiz.</li>
+        </ul>
+      </li>
+      <li class="mb-3">
+        <h5>Sign up with a username, email and Password</h5>
+        <p>
+          Once you have signed up successfully, you will be able to access the API.
+        </p>
+        <p>
+          <strong>Note:</strong> Keep your login credentials secure. Do not share them
+          publicly or expose them on your frontend code.
+        </p>
+      </li>
+      <li>
+        <h5>Explore the API Documentation</h5>
+        <p>
+          Familiarize yourself with the available endpoints and how to use them
+          by visiting our comprehensive API documentation:
+        </p>
+        <a href="#" class="btn btn-primary">View API Documentation</a>
+      </li>
+    </ol>
+  </section>
+
+  <section id="endpoints" class="mb-5">
+    <h2>API Endpoints</h2>
+    <ul>
+      <li>
+        <strong>API root</strong>:
+        <ul>
+          <li><code>GET /api/v1/</code></li>
+        </ul>
+      </li>
+      <li>
+        <strong>List categories</strong>: Retrieve a list of question categories
+        <ul>
+          <li><code>GET api/v1/categories/</code></li>
+        </ul>
+      </li>
+      <li>
+        <strong>View Category</strong>: View a single category
+        <ul>
+          <li><code>GET categories/<int:pk>/</code></li>
+        </ul>
+      </li>
+      <li>
+        <strong>View Questions</strong>: View Questions under a category
+        <ul>
+          <li><code>api/v1/categories/<int:category_id>/questions/</code></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+    </ul>
+    <a href="#" class="btn btn-primary">View API Documentation</a>
+  </section>
+
+
+  <section id="support" class="mb-5">
+    <h2>Support</h2>
+    <p>
+      If you encounter any issues or have questions about using the Quiz Wiz
+      API, please refer to the documentation: <a href="#">API Docs</a> or
+      contact our support team at
+      <a href="mailto:support@quizwiz.com">support@quizwiz.com</a>.
+    </p>
+  </section>
+
+  <section id="terms-of-use" class="mb-5">
+    <h2>Terms of Use</h2>
+    <p>
+      By using the Quiz Wiz API, you agree to comply with our
+      <a href="{% url 'api_terms_of_use' %}">API Terms of Use</a>. Please review
+      these terms carefully before integrating our API into your application.
+    </p>
+  </section>
+
+  <section id="conclusion" class="text-center">
+    <h2>Conclusion</h2>
+    <p>
+      The Quiz Wiz API is designed to be a robust tool for developers looking to
+      integrate quizzes into their projects. We're excited to see what you build
+      with it! Get started by exploring the API documentation and happy coding!
+    </p>
+  </section>
+</div>
+
+{% endblock content %}

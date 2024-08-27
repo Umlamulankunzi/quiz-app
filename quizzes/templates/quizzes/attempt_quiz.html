@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+<h2>Attempt Quiz: {{ quiz.category.name }}</h2>
+
+
+<form action="{% url 'quiz_result' quiz.id  %}" method="POST">
+  {% csrf_token %}
+  <p class="text-danger" id="timer" data-time-limit="{{ quiz.time_limit }}">Loading timer...</p>
+
+  {% for question in quiz.questions.all %}
+  <div class="question">
+    <h5>{{ forloop.counter }}. {{ question.question_text }}</h5>
+    {% if question.question_type == 'multiple' %}
+      {% for choice in question.incorrect_answers %}
+          <div>
+            <input
+            type="radio"
+            name="question_{{ question.id }}"
+            value="{{ choice }}"
+            >
+            {{ choice }}
+          </div>
+
+        {% endfor %}
+          <div>
+          <input
+            type="radio"
+            name="question_{{ question.id }}"
+            value="{{ question.correct_answer }}"
+            class="d-inline-block"
+          />
+          {{ question.correct_answer }}
+        </div>
+    {% elif question.question_type == 'boolean' %}
+    <div>
+      <input type="radio" name="question_{{ question.id }}" value="True" />
+      True
+    </div>
+    <div>
+      <input type="radio" name="question_{{ question.id }}" value="False" />
+      False
+    </div>
+    </div>
+    {% endif %}
+
+  <hr />
+  {% endfor %}
+
+  <button class="btn btn-success" type="submit">Submit Quiz</button>
+
+</form>
+</div>
+<script src="{% static 'js/quiz_timer.js' %}"></script>
+{% endblock %}

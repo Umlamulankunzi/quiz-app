@@ -8,7 +8,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Automatically log in the user after registration
-            return redirect('quiz_list')  # Redirect to a view after successful registration
+            return redirect('home')  # Redirect to a view after successful registration
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
@@ -22,5 +22,5 @@ class CustomLoginView(auth_views.LoginView):
     """
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('quiz_list')
+            return redirect('category_list')
         return super().dispatch(request, *args, **kwargs)

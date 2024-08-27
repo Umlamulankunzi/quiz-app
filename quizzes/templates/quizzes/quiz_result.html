@@ -2,11 +2,103 @@
 <!-- see how they did in each question, showing maybe in red the ones they  -->
 <!-- got wrong.... design it, and see the view which uses this template -->
 <!-- and use the UserResult model -->
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
+<div class="container-fluid w-75">
+<h2>Quiz Results</h2>
 
-<h1>Quiz Result</h1>
-<p>You scored {{ result.score }} out of {{ result.quiz.questions.count }}</p>
+<p>Category: {{ quiz.category.name }}</p>
+<p>Your Score: {{ score }} / {{ quiz.questions.count }}</p>
 
+<div class="quiz-results">
+  {% for result in results %}
+  <div class="question {% if not result.is_correct %}text-danger{% endif %}">
+    <p class="fw-light">{{ forloop.counter }}. {{ result.question.question_text }}</p>
+
+    <div class="answers">
+      {% if result.question.question_type == 'multiple' %}
+       {% for choice in result.question.incorrect_answers %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" disabled
+            {% if choice == result.user_answer %}
+              checked
+              {% if not result.is_correct %}
+                class="text-danger"
+              {% endif %}
+            {% endif %}>
+
+            <label
+              class="form-check-label
+              {% if choice == result.user_answer and not result.is_correct %} text-danger {% endif %}"
+            >
+            {{ choice }}
+            </label>
+        </div>
+        {% endfor %}
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" disabled
+          {% if result.question.correct_answer == result.user_answer %}
+            checked class="text-success"
+          {% else %}
+            class="text-success"
+          {% endif %}>
+
+        <label class="form-check-label text-success">
+          {{ result.question.correct_answer }}
+            {% if result.question.correct_answer == result.user_answer %} ✔ {% endif %}
+        </label>
+      </div>
+
+      {% elif result.question.question_type == 'boolean' %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" disabled
+          {% if 'True' == result.user_answer %}
+            checked
+            {% if not result.is_correct %}
+              class="text-danger"
+            {% endif %}
+          {% endif %}>
+        <label
+          class="form-check-label {% if 'True' == result.user_answer and not result.is_correct %}text-danger{% endif %}"
+        >
+          True
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" disabled
+        {% if 'False' == result.user_answer %}
+          checked
+          {% if not result.is_correct %}
+            class="text-danger"
+          {% endif %}
+        {% endif %}>
+        <label
+          class="form-check-label {% if 'False' == result.user_answer and not result.is_correct %}text-danger{% endif %}"
+        >
+          False
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" disabled
+        {% if result.question.correct_answer == result.user_answer %}
+           checked class="text-success"
+        {% else %}
+           class="text-success"
+        {% endif %}>
+        <label class="form-check-label text-success">
+          {{ result.question.correct_answer }} {% if result.question.correct_answer == result.user_answer %} ✔ {% endif %}
+        </label>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <hr />
+  {% endfor %}
+</div>
+
+<a href="{% url 'category_list' %}" class="btn btn-primary"
+  >Back to Categories</a
+>
+</div>
 {% endblock content %}

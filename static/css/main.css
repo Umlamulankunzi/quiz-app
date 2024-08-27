@@ -96,13 +96,11 @@ FONTS
 
 .logo {
   color: #3ce653;
-  align-self: center;
-  padding-left: 2vh;
   font-family: "Edu VIC WA NT Beginner", cursive;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
 
 body {
@@ -111,3 +109,55 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+
+.link-orange {
+  color: #f1b04d;
+}
+
+.text-orange {
+  color: #f1b04d;
+}
+
+/* exp */
+/* Change the background color of input fields */
+.custom-input-bg {
+  background-color: #f0f8ff; /* Light AliceBlue color */
+}
+
+/* Change the text color of input fields */
+.custom-input-text {
+  color: #4b0082; /* Indigo color */
+}
+
+/* Change the border color of input fields */
+.custom-input-border {
+  border-color: #ff6347; /* Tomato color */
+}
+
+/* Change the border color on focus */
+.custom-input-focus:focus {
+  border-color: #32cd32; /* LimeGreen color */
+  box-shadow: 0 0 0 .2rem rgba(50, 205, 50, 0.25);
+}
+
+
+
+
+/* submit quiz css */
+.text-danger {
+  color: red;
+}
+
+.text-success {
+  color: green;
+}
+
+input[type="radio"].text-danger + label {
+  color: red;
+}
+
+input[type="radio"].text-success + label {
+  color: green;
+}
+

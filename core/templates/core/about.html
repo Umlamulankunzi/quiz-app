@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- ABOUT SECTION -->
+  <div id="about" class="text-white container mt-lg-5 pt-lg-3">
+    <h2 class="text-center text-orange py-2">About Quiz Wiz</h2>
+    <p class="lead text-white pb-3 text-center">
+      Quiz Wiz is all about making learning fun and accessible through
+      interactive quizzes.
+    </p>
+    <div class="row align-items-md-stretch pb-lg-5 pb-sm-2 mb-lg-5">
+      <div class="col-md-6">
+        <div class="h-100 text-white rounded-3">
+          <p>
+            Whether you're looking to challenge yourself, improve your skills,
+            or simply enjoy a brain-teasing quiz, we've got something for you.
+          </p>
+          <ul>
+            <li>
+              Explore a variety of subjects with carefully crafted quizzes.
+            </li>
+            <li>Engage in a user-friendly experience designed for all ages.</li>
+            <li>
+              Challenge yourself or compete with others to test your knowledge.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100">
+          <p>
+            At Quiz Wiz, we believe that learning should be an enjoyable and
+            rewarding journey. Our platform offers an engaging environment where
+            you can explore, challenge, and grow your knowledge across various
+            topics. Whether you're here to learn something new or to prove your
+            mastery, Quiz Wiz is your ultimate destination. Join us today and
+            start your journey towards knowledge!
+          </p>
+          <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

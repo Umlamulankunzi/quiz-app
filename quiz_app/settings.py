@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'users',
     'quizzes',
     'api',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +77,7 @@ TEMPLATES = [
 ]
 
 # Customising the default user model
-AUTH_USER_MODEL = 'users.CustomUser'
+# AUTH_USER_MODEL = 'users.CustomUser'
 
 
 WSGI_APPLICATION = 'quiz_app.wsgi.application'
@@ -136,13 +139,18 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 
-LOGIN_REDIRECT_URL = 'quiz_list'  # Redirect to quiz list after login
-LOGOUT_REDIRECT_URL = 'quiz_list'  # Redirect to quiz list after logout
+LOGIN_REDIRECT_URL = 'home'  # Redirect to quiz list after login
+LOGOUT_REDIRECT_URL = 'home'  # Redirect to quiz list after logout
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'PAGE_SIZE': 20,     # Pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

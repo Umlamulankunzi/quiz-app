@@ -1,27 +1,41 @@
-from rest_framework import generics, permissions
-from quizzes.models import Quiz  # UserResult
-from .serializers import QuizSerializer, UserResultSerializer
-from django.http import JsonResponse
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework import generics, permissions, pagination
+from quizzes.models import Category, Question  # UserResult
+from .serializers import CategorySerializer, QuestionSerializer
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
+
 
 # Create your views here.
-def index(request):
-    data = {"message": "hello Quiz App"}
-    return JsonResponse(data)
+class APIRootView(APIView):
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    queryset = Category.objects.all()
+
+    def get(self, request, format=None):
+        return Response({
+            'categories': reverse('category_list_api', request=request, format=format),
+        })
 
 
-class QuizListView(generics.ListAPIView):
-    queryset = Quiz.objects.filter(approved=True)
-    serializer_class = QuizSerializer
+class CategoryListView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # pagination_class = pagination.PageNumberPagination
+
+class CategoryDetailView(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-class QuizDetailView(generics.RetrieveAPIView):
-    queryset = Quiz.objects.filter(approved=True)
-    serializer_class = QuizSerializer
+
+class QuestionListView(generics.ListAPIView):
+    serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # pagination_class = pagination.PageNumberPagination
 
-class SubmitQuizView(generics.CreateAPIView):
-    serializer_class = UserResultSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        return Question.objects.filter(category_id=category_id)
